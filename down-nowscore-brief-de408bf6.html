@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>捷报比分 · 日常赛事阅读页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fafaf9;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #1d1d1f;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 680px;
+            width: 100%;
+        }
+
+        /* ---------- 开场短句 (hero 微结构) ---------- */
+        .opening {
+            margin: 1.2rem 0 2.4rem;
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #121213;
+            border-left: 4px solid #f0b429;
+            padding-left: 1rem;
+        }
+
+        .opening small {
+            display: block;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            color: #5e5e60;
+            margin-top: 0.4rem;
+        }
+
+        /* ---------- 承接段落 ---------- */
+        .intro {
+            font-size: 1.0625rem;
+            margin-bottom: 2.2rem;
+            color: #2c2c2e;
+        }
+
+        .intro p {
+            margin-bottom: 1.4rem;
+        }
+
+        .intro a {
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .intro a:hover {
+            color: #0b2f7a;
+            background: #eef2ff;
+            text-decoration: none;
+            padding: 0 0.1rem;
+            border-radius: 2px;
+        }
+
+        /* ---------- 特点列表 (极简卡片) ---------- */
+        .features {
+            list-style: none;
+            margin: 2.8rem 0 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .features li {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.2rem 1.6rem;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02), 0 2px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e9e8e6;
+            transition: box-shadow 0.2s, border-color 0.2s;
+        }
+
+        .features li:hover {
+            border-color: #d4d2d0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+        }
+
+        .features li strong {
+            display: block;
+            font-weight: 520;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.3rem;
+            color: #1c1c1e;
+        }
+
+        .features li span {
+            font-size: 0.975rem;
+            color: #48484a;
+        }
+
+        /* ---------- 场景段落 (延伸阅读感) ---------- */
+        .scene-note {
+            background: #f3f2ef;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 2.8rem;
+            font-size: 0.975rem;
+            color: #2a2a2c;
+            border: 1px solid #e2dfda;
+        }
+
+        .scene-note p {
+            margin-bottom: 0.8rem;
+        }
+
+        .scene-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .scene-note a {
+            color: #1d4ed8;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        .scene-note a:hover {
+            color: #0b2f7a;
+        }
+
+        /* ---------- 温和结尾 + FAQ 摘要 ---------- */
+        .closing {
+            border-top: 1px solid #e3e1de;
+            padding-top: 2rem;
+            margin-top: 1.2rem;
+            font-size: 0.95rem;
+            color: #3a3a3c;
+        }
+
+        .closing p {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-mini {
+            margin: 1.6rem 0 0.2rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .faq-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #eae8e5;
+        }
+
+        .faq-item dt {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #1d1d1f;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item dd {
+            font-size: 0.92rem;
+            color: #4b4b4d;
+            margin-left: 0;
+        }
+
+        .closing .signature {
+            margin-top: 2.2rem;
+            font-size: 0.9rem;
+            color: #6b6b6d;
+        }
+
+        /* ---------- 响应式 ---------- */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+            .opening {
+                font-size: 1.9rem;
+                padding-left: 0.75rem;
+            }
+            .features li {
+                padding: 1rem 1.2rem;
+            }
+            .scene-note {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .opening {
+                font-size: 2.8rem;
+                margin-top: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        比分不只一串数字
+        <small>日常翻阅，慢慢对照</small>
+    </div>
+
+    <!-- 承接段落：从日常查询出发 -->
+    <div class="intro">
+        <p>
+            看比赛的人，心里都有一本账：谁赢了、几比几、下一轮碰谁。但越是熟悉的联赛，越容易记混——上周的比分和这周的走势，翻手机相册不如翻一个安静的页面。我自己就常常在午后或者通勤时，打开 <a href="https://down-nowscore.com">捷报比分</a>，从列表里找到刚结束的那场，慢慢对一遍进球时间、阵容变化。它不弹窗、不催促，像一个老朋友把赛果摊在桌上。
+        </p>
+        <p>
+            有时只是为了确认某个球员的状态，或者单纯想看看两支队伍的历史交锋记录。<a href="https://down-nowscore.com">捷报比分</a> 的呈现方式很干净——赛程、积分、数据都按照时间轴排好，你不需要翻好几层菜单。这种「直接看到」的感觉，对经常对照多个联赛的人来说，特别省心。
+        </p>
+    </div>
+
+    <!-- 特点列表：克制、侧重阅读体验 -->
+    <ul class="features">
+        <li>
+            <strong>赛果按日期归拢</strong>
+            <span>前一天、当天的完场比分集中展示，不用在页面间跳来跳去。适合每天睡前快速扫一遍。</span>
+        </li>
+        <li>
+            <strong>阵容与事件并列</strong>
+            <span>进球、换人、红黄牌紧跟在比分下方，想细看时不用额外点击。对照起来很顺手。</span>
+        </li>
+        <li>
+            <strong>多联赛并行展示</strong>
+            <span>英超、西甲、意甲、亚冠、J联赛……按洲际和等级分组，但都在一个页面里。延伸阅读时非常自然。</span>
+        </li>
+        <li>
+            <strong>数据更新稳定</strong>
+            <span>从比赛结束到比分可查，间隔很短。偶尔回看几小时前的赛事，信息也保持完整。</span>
+        </li>
+    </ul>
+
+    <!-- 场景段落：延伸阅读的温度 -->
+    <div class="scene-note">
+        <p>🌿 去年秋天的一个周末，我想查三周前某场德比的上半场比分。打开 <a href="https://down-nowscore.com">捷报比分</a>，按日期往回翻，竟然还能看到当时的实时事件记录。那种「被妥善保存」的感觉，让查比分变成一种安静的阅读。</p>
+        <p>后来养成习惯：周末晚上一边喝茶，一边对照这一轮和上一轮的数据变化。没有解说，没有弹幕，只有比分和时间——反而更接近看球最初的那种专注。</p>
+    </div>
+
+    <!-- 温和结尾 + FAQ 摘要 -->
+    <div class="closing">
+        <p>比分是瞬间的结果，也是故事的坐标。与其在碎片信息里拼凑，不如让一个干净的地方帮你存着。</p>
+
+        <dl class="faq-mini">
+            <div class="faq-item">
+                <dt>每天数据大概什么时间更新？</dt>
+                <dd>通常比赛结束后几分钟内就会出现在列表里。上午看前一天的完场，数据已经整理好了。</dd>
+            </div>
+            <div class="faq-item">
+                <dt>可以只关注某一个联赛吗？</dt>
+                <dd>页面本身按联赛分组，你可以直接滚动到感兴趣的区域。如果想更聚焦，可以通过页面内的筛选按钮收起其他联赛。</dd>
+            </div>
+            <div class="faq-item">
+                <dt>历史比分能往回查多久？</dt>
+                <dd>近几轮的赛果都保持在页面上，再往前的数据需要点进具体比赛页面查看。日常对照完全够用。</dd>
+            </div>
+        </dl>
+
+        <div class="signature">
+            不追求最快，只追求清晰。<br>
+            从一场比分延伸到一段记忆，刚刚好。
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
